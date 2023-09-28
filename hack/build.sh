@@ -51,6 +51,11 @@ for OS in ${PROVIDER_BUILD_PLATFORMS[@]}; do
         echo "Building for ${OS}/${ARCH} not supported."
         continue
     fi
+    
+    if [[ "${ARCH}" == "amd64" && "${OS}" == "android" ]]; then
+        echo "Building for ${OS}/${ARCH} not supported."
+        continue
+    fi
 
     echo "Building for ${OS}/${ARCH}"
     GOARCH=${ARCH} GOOS=${OS} ${GO_BUILD_CMD} -ldflags "${GO_BUILD_LDFLAGS}"\
