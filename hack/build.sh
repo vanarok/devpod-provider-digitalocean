@@ -61,6 +61,13 @@ for OS in ${PROVIDER_BUILD_PLATFORMS[@]}; do
     GOARCH=${ARCH} GOOS=${OS} ${GO_BUILD_CMD} -ldflags "${GO_BUILD_LDFLAGS}"\
       -o "${PROVIDER_ROOT}/release/${NAME}" main.go
     shasum -a 256 "${PROVIDER_ROOT}/release/${NAME}" | cut -d ' ' -f 1 > "${PROVIDER_ROOT}/release/${NAME}".sha256
+    
+    if [[ "${ARCH}" == "arm64" && "${OS}" == "android" ]]; then
+        CGO_ENABLED=1 CC=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android30-clang GOARCH=${ARCH} GOOS=${OS} ${GO_BUILD_CMD} -ldflags "${GO_BUILD_LDFLAGS}"\
+        -o "${PROVIDER_ROOT}/release/${NAME}" main.go
+    shasum -a 256 "${PROVIDER_ROOT}/release/${NAME}" | cut -d ' ' -f 1 > "${PROVIDER_ROOT}/release/${NAME}".sha256
+    fi
+    
   done
 done
 
