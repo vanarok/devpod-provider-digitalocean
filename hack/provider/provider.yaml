@@ -123,7 +123,7 @@ binaries:
     - os: android
       arch: arm64
       path: https://github.com/vanarok/devpod-provider-digitalocean/releases/download/##VERSION##/devpod-provider-digitalocean-android-arm64
-      checksum: ##CHECKSUM_LINUX_ARM64##
+      checksum: ##CHECKSUM_ANDROID_ARM64##
 exec:
   init: ${DO_PROVIDER} init
   command: ${DO_PROVIDER} command
