@@ -30,11 +30,7 @@ jobs:
       - name: Compile binaries
         run: |
           echo $ANDROID_NDK_HOME
-          ls $ANDROID_NDK_HOME
           ls $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/
-          ls $ANDROID_NDK_HOME/toolchains/llvm/
-          ls $ANDROID_NDK_HOME/toolchains/
-          ls $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/
           chmod +x ./hack/build.sh
           ./hack/build.sh
         env:
